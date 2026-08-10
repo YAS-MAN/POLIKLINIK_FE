@@ -5,9 +5,9 @@
     --primary-hover: #175d19;
     --primary-light: #e6f3e7;
     --primary-light-alpha: rgba(32, 127, 35, 0.08);
-    --secondary-color: #2CF0E4; /* New Cyan Color from User */
-    --secondary-hover: #22c7bd;
-    --secondary-light: #e5fdfb;
+    --secondary-color: #228781; /* Restored Secondary Teal Color */
+    --secondary-hover: #1b6a65;
+    --secondary-light: #e5f5f4;
     --sidebar-bg: #113f13; /* Dark Green Sidebar */
     --sidebar-active: #f2f6f3; /* Matches main page content background for seamless bridge */
     --bg-color: #f2f6f3; /* Soft green-ish light sage canvas background */
@@ -103,7 +103,7 @@ input, button, select, textarea {
     left: 0;
     width: 100%;
     height: 140px;
-    background: radial-gradient(circle at 10% 10%, rgba(44, 240, 228, 0.35), transparent 70%);
+    background: radial-gradient(circle at 10% 10%, rgba(34, 135, 129, 0.35), transparent 70%);
     pointer-events: none;
     z-index: 0;
 }
@@ -115,7 +115,7 @@ input, button, select, textarea {
     left: 0;
     width: 70px;
     height: 220px;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 220' fill='none'%3E%3Cpath d='M-20 220C40 160 90 190 140 140C190 90 200 160 270 120V220H-20Z' fill='%232CF0E4' fill-opacity='0.25'/%3E%3Cpath d='M-30 220C50 180 80 130 150 160C220 190 230 110 280 140V220H-30Z' fill='%23207F23' fill-opacity='0.28'/%3E%3Ccircle cx='50' cy='160' r='45' fill='%23a7f3d0' fill-opacity='0.18'/%3E%3Cpath d='M160 100C130 130 100 110 80 150C110 135 145 145 160 100Z' fill='%232CF0E4' fill-opacity='0.3'/%3E%3Cpath d='M80 60C60 90 40 80 20 120C50 105 75 115 80 60Z' fill='%23207F23' fill-opacity='0.28'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 220' fill='none'%3E%3Cpath d='M-20 220C40 160 90 190 140 140C190 90 200 160 270 120V220H-20Z' fill='%23228781' fill-opacity='0.22'/%3E%3Cpath d='M-30 220C50 180 80 130 150 160C220 190 230 110 280 140V220H-30Z' fill='%23207F23' fill-opacity='0.25'/%3E%3Ccircle cx='50' cy='160' r='45' fill='%23a7f3d0' fill-opacity='0.15'/%3E%3Cpath d='M160 100C130 130 100 110 80 150C110 135 145 145 160 100Z' fill='%23228781' fill-opacity='0.3'/%3E%3Cpath d='M80 60C60 90 40 80 20 120C50 105 75 115 80 60Z' fill='%23207F23' fill-opacity='0.28'/%3E%3C/svg%3E");
     background-size: cover;
     background-position: bottom left;
     pointer-events: none;
@@ -214,13 +214,13 @@ input, button, select, textarea {
     display: flex !important;
 }
 
-/* Profile Card state - Updated to Cyan Hex 2CF0E4 */
+/* Profile Card state - Restored to Secondary Teal Gradient */
 .profile-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px 8px;
-    background: linear-gradient(135deg, #2CF0E4, #129b93);
+    background: linear-gradient(135deg, var(--secondary-color), #1a6d68);
     border-radius: var(--radius-md);
     margin-bottom: 20px;
     margin-right: 8px;
@@ -230,8 +230,8 @@ input, button, select, textarea {
     overflow: hidden;
     margin-top: 5px;
     flex-shrink: 0;
-    box-shadow: 0 6px 18px rgba(44, 240, 228, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 14px rgba(34, 135, 129, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     z-index: 2;
     position: relative;
 }
@@ -246,7 +246,7 @@ input, button, select, textarea {
     height: 38px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #083b38;
+    border: 2px solid var(--secondary-color);
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
 }
@@ -254,7 +254,7 @@ input, button, select, textarea {
 .app-container.expanded .profile-avatar {
     width: 58px;
     height: 58px;
-    border-color: #083b38;
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
 .profile-info-text {
@@ -274,17 +274,17 @@ input, button, select, textarea {
 }
 
 .profile-name {
-    font-weight: 800;
+    font-weight: 600;
     font-size: 14.5px;
-    color: #062b29; /* Dark high contrast text for cyan #2CF0E4 */
+    color: var(--white);
     white-space: nowrap;
 }
 
 .profile-role {
     font-size: 11.5px;
-    color: #094743;
+    color: #e5f5f4;
     margin-top: 2px;
-    font-weight: 700;
+    font-weight: 500;
     white-space: nowrap;
 }
 
@@ -464,9 +464,9 @@ input, button, select, textarea {
 }
 
 .submenu-link.active {
-    color: #062b29;
-    background-color: var(--secondary-color);
-    font-weight: 700;
+    color: var(--secondary-color);
+    background-color: var(--white);
+    font-weight: 600;
     box-shadow: var(--shadow-sm);
 }
 
@@ -617,7 +617,7 @@ input, button, select, textarea {
 /* HEADER STYLING */
 .header {
     background-color: var(--white);
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     padding: 16px 30px;
     display: flex;
     align-items: center;
@@ -626,7 +626,6 @@ input, button, select, textarea {
     top: 0;
     z-index: 99;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-    border-top: 4px solid var(--secondary-color); /* Top Cyan #2CF0E4 Accent line */
 }
 
 .search-bar {
@@ -647,7 +646,7 @@ input, button, select, textarea {
 .search-bar input:focus {
     border-color: var(--secondary-color);
     background-color: var(--white);
-    box-shadow: 0 0 0 4px rgba(44, 240, 228, 0.2);
+    box-shadow: 0 0 0 4px rgba(34, 135, 129, 0.12);
 }
 
 .search-bar svg {
@@ -718,7 +717,7 @@ input, button, select, textarea {
 
 .header-icon-btn:hover {
     background-color: var(--secondary-light);
-    color: #0b4541;
+    color: var(--secondary-color);
 }
 
 .header-icon-btn .badge {
@@ -772,7 +771,7 @@ input, button, select, textarea {
 }
 
 .breadcrumb-item.active {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     font-weight: 700;
 }
 
@@ -788,11 +787,10 @@ input, button, select, textarea {
     color: var(--text-color);
     font-weight: 600;
     box-shadow: var(--shadow-sm);
-    border-top: 3px solid var(--secondary-color);
 }
 
 .date-range-picker svg {
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 /* GRID LAYOUTS */
@@ -857,7 +855,7 @@ input, button, select, textarea {
 
 /* DASHBOARD WELCOME CARD */
 .welcome-card {
-    background-image: linear-gradient(135deg, rgba(32, 127, 35, 0.85), rgba(17, 72, 69, 0.92)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000&auto=format&fit=crop');
+    background-image: linear-gradient(135deg, rgba(34, 135, 129, 0.7), rgba(17, 72, 69, 0.85)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     color: var(--white);
@@ -869,9 +867,8 @@ input, button, select, textarea {
     justify-content: center;
     align-items: flex-start;
     padding: 35px 30px;
-    box-shadow: 0 10px 28px rgba(32, 127, 35, 0.25);
+    box-shadow: 0 10px 28px rgba(34, 135, 129, 0.25);
     border-radius: var(--radius-lg);
-    border-top: 5px solid var(--secondary-color); /* Cyan #2CF0E4 top bar */
 }
 
 .welcome-info {
@@ -921,7 +918,7 @@ input, button, select, textarea {
     width: 32px;
     height: 32px;
     background-color: var(--white);
-    color: var(--primary-color);
+    color: var(--secondary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -932,7 +929,7 @@ input, button, select, textarea {
 .stat-pill-icon svg {
     width: 16px;
     height: 16px;
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .stat-pill-number {
@@ -951,7 +948,6 @@ input, button, select, textarea {
     color: var(--white);
     border: none;
     border-radius: var(--radius-lg);
-    border-top: 5px solid var(--secondary-color); /* Cyan #2CF0E4 top bar */
 }
 
 .patients-trend-card .card-title {
@@ -967,7 +963,7 @@ input, button, select, textarea {
 }
 
 .trend-highlight {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     padding: 2px 6px;
     border-radius: 4px;
     font-weight: 600;
@@ -1004,7 +1000,7 @@ input, button, select, textarea {
     height: 44px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--secondary-light);
 }
 
 .doctor-list-name {
@@ -1026,8 +1022,8 @@ input, button, select, textarea {
 }
 
 .status-pill.available {
-    background-color: var(--primary-light);
-    color: var(--primary-color);
+    background-color: var(--secondary-light);
+    color: var(--secondary-color);
 }
 
 .status-pill.not-available {
@@ -1078,7 +1074,7 @@ input, button, select, textarea {
     background-color: var(--bg-color);
     padding: 12px;
     border-radius: var(--radius-sm);
-    border-left: 3px solid var(--primary-color);
+    border-left: 3px solid var(--secondary-color);
 }
 
 .rating-stars {
@@ -1089,7 +1085,7 @@ input, button, select, textarea {
 }
 
 .recommend-btn {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: var(--white);
     border: none;
     padding: 8px 16px;
@@ -1102,11 +1098,11 @@ input, button, select, textarea {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 4px 12px rgba(32, 127, 35, 0.2);
+    box-shadow: 0 4px 12px rgba(34, 135, 129, 0.2);
 }
 
 .recommend-btn:hover {
-    background-color: var(--primary-hover);
+    background-color: var(--secondary-hover);
 }
 
 /* CONSULTATION DONUT CARD */
@@ -1162,7 +1158,7 @@ input, button, select, textarea {
 }
 
 .gender-icon.male {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
 }
 
 .gender-icon.female {
@@ -1180,11 +1176,10 @@ input, button, select, textarea {
     color: var(--text-muted);
 }
 
-/* PATIENTS TABLE CARD - DUAL COLOR CONCEPT: Top Cyan #2CF0E4 to Bottom Green #207F23 */
+/* PATIENTS TABLE CARD */
 .table-card {
     padding: 0;
     overflow: hidden;
-    border-top: 4px solid var(--secondary-color);
 }
 
 .table-card .card-title-bar {
@@ -1202,16 +1197,13 @@ table {
     text-align: left;
 }
 
-/* DUAL COLOR GRADIENT TABLE HEADER: Top Cyan #2CF0E4 to Bottom Green #207F23 */
 th {
-    background: linear-gradient(180deg, #2CF0E4 0%, #207F23 100%);
+    background-color: var(--primary-color);
     color: var(--white);
     padding: 14px 20px;
-    font-weight: 700;
-    font-size: 13.5px;
+    font-weight: 600;
+    font-size: 13px;
     letter-spacing: 0.5px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    border-bottom: 2px solid #175d19;
 }
 
 td {
@@ -1251,13 +1243,12 @@ tr:last-child td {
 
 .badge-category {
     background-color: var(--secondary-light);
-    color: #084c47;
+    color: var(--secondary-color);
     padding: 4px 8px;
     border-radius: 4px;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 11px;
     display: inline-block;
-    border: 1px solid rgba(44, 240, 228, 0.4);
 }
 
 /* BUTTON ACTION ICONS */
@@ -1327,7 +1318,7 @@ tr:last-child td {
     width: 40px;
     height: 40px;
     background-color: var(--secondary-light);
-    color: #0b4541;
+    color: var(--secondary-color);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -1353,39 +1344,38 @@ tr:last-child td {
 
 /* FORMS AND INTERACTIVITY */
 .btn-primary {
-    background: linear-gradient(180deg, #2CF0E4 0%, #207F23 100%);
+    background-color: var(--primary-color);
     color: var(--white);
     border: none;
     padding: 10px 20px;
     border-radius: var(--radius-sm);
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 12px rgba(32, 127, 35, 0.2);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(32, 127, 35, 0.15);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(180deg, #25ded3 0%, #175d19 100%);
+    background-color: var(--primary-hover);
     transform: translateY(-1px);
 }
 
 .btn-secondary {
     background-color: var(--secondary-color);
-    color: #062b29;
+    color: var(--white);
     border: none;
     padding: 10px 20px;
     border-radius: var(--radius-sm);
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 12px rgba(44, 240, 228, 0.25);
+    box-shadow: 0 4px 12px rgba(34, 135, 129, 0.15);
 }
 
 .btn-secondary:hover {
@@ -1395,7 +1385,7 @@ tr:last-child td {
 
 .btn-outline {
     background: none;
-    border: 1.5px solid var(--primary-color);
+    border: 1px solid var(--primary-color);
     color: var(--primary-color);
     padding: 10px 20px;
     border-radius: var(--radius-sm);
@@ -1449,7 +1439,7 @@ tr:last-child td {
 .form-group textarea:focus {
     border-color: var(--secondary-color);
     background-color: var(--white);
-    box-shadow: 0 0 0 4px rgba(44, 240, 228, 0.25);
+    box-shadow: 0 0 0 4px rgba(34, 135, 129, 0.15);
 }
 
 .form-group select {
