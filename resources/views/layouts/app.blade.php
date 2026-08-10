@@ -15,8 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- Default state starts minimized (collapsed) without expanded class -->
-    <div class="app-container">
+    <!-- Default state starts expanded (maximized) for seamless child nav experience -->
+    <div class="app-container expanded">
         
         <!-- SIDEBAR LEFT (CLICKABLE COLLAPSIBLE) -->
         <aside class="sidebar">
@@ -28,8 +28,8 @@
                 <div class="logo-container" onclick="toggleSidebar(true)">
                     <img src="{{ asset('poliklinik favicon.png') }}" alt="Poliklinik Al-Azhar Logo">
                     <div class="sidebar-text logo-text-group" style="display: flex; flex-direction: column; line-height: 1.15; text-align: left;">
-                        <span style="color: #228781; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Poliklinik</span>
-                        <span style="color: #0282C6; font-size: 19px; font-weight: 800; letter-spacing: 0.3px;">Al-Azhar</span>
+                        <span style="color: #2CF0E4; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Poliklinik</span>
+                        <span style="color: #ffffff; font-size: 19px; font-weight: 800; letter-spacing: 0.3px;">Al-Azhar</span>
                     </div>
                 </div>
                 <!-- Collapse Trigger Button -->
@@ -40,17 +40,17 @@
                 </button>
             </div>
             
-            <!-- Enhanced Profile Box with Status Badge -->
+            <!-- Enhanced Profile Box in Cyan #2CF0E4 Theme -->
             <div class="profile-card">
                 <div style="position: relative; display: inline-block;">
                     <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop" alt="dr. Siti Rahmawati" class="profile-avatar">
-                    <span title="Status: Online & Tugas" style="position: absolute; bottom: 2px; right: 2px; width: 13px; height: 13px; background-color: #22c55e; border: 2px solid #228781; border-radius: 50%;"></span>
+                    <span title="Status: Online & Tugas" style="position: absolute; bottom: 2px; right: 2px; width: 13px; height: 13px; background-color: #22c55e; border: 2px solid #083b38; border-radius: 50%;"></span>
                 </div>
                 <div class="profile-info-text">
                     <h3 class="profile-name">dr. Siti Rahmawati</h3>
                     <span class="profile-role">Super Admin</span>
-                    <div style="margin-top: 5px; display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; background: rgba(255, 255, 255, 0.18); border-radius: 12px; font-size: 10.5px; font-weight: 600; color: #ffffff; backdrop-filter: blur(4px);">
-                        <span style="width: 6px; height: 6px; border-radius: 50%; background-color: #4ade80;"></span> Praktik Aktif
+                    <div style="margin-top: 5px; display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; background: rgba(8, 59, 56, 0.15); border-radius: 12px; font-size: 10.5px; font-weight: 700; color: #062b29; backdrop-filter: blur(4px);">
+                        <span style="width: 6px; height: 6px; border-radius: 50%; background-color: #22c55e;"></span> Praktik Aktif
                     </div>
                 </div>
             </div>
@@ -327,7 +327,7 @@
     <script>
         function toggleSidebar(forceExpand) {
             const container = document.querySelector('.app-container');
-            let expand = false;
+            let expand = true;
             if (forceExpand === true) {
                 container.classList.add('expanded');
                 expand = true;
@@ -410,18 +410,18 @@
             }
         }
 
-        // Initialize default states on load - MINIMIZED BY DEFAULT
+        // Initialize default states on load - EXPANDED BY DEFAULT
         document.addEventListener('DOMContentLoaded', () => {
             const currentRole = localStorage.getItem('selected_role') || 'Super Admin';
             applyRole(currentRole);
 
-            // Default sidebar state: MINIMIZED (collapsed) unless explicitly saved as 'true'
+            // Default sidebar state: EXPANDED unless explicitly saved as 'false'
             const sidebarState = localStorage.getItem('sidebar_expanded');
             const container = document.querySelector('.app-container');
-            if (sidebarState === 'true') {
-                container.classList.add('expanded');
-            } else {
+            if (sidebarState === 'false') {
                 container.classList.remove('expanded');
+            } else {
+                container.classList.add('expanded');
             }
         });
     </script>

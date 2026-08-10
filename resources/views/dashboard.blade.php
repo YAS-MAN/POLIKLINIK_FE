@@ -21,49 +21,6 @@
     </div>
 </div>
 
-<!-- TOP STAT METRIC SUMMARY ROW (Matching Reference Image Top Metrics) -->
-<div class="grid-4" style="margin-bottom: 24px;">
-    <div class="stat-summary-card accent-green">
-        <div class="stat-summary-info">
-            <h4>Total Pasien</h4>
-            <h2>{{ \App\Models\Patient::count() ?? 1250 }}</h2>
-        </div>
-        <div class="stat-summary-icon-box green">
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a7 7 0 00-7 7v1h12v-1a7 7 0 00-7-7z"></path></svg>
-        </div>
-    </div>
-    
-    <div class="stat-summary-card accent-teal">
-        <div class="stat-summary-info">
-            <h4>Rekam Medis</h4>
-            <h2>{{ \App\Models\MedicalRecord::count() ?? 842 }}</h2>
-        </div>
-        <div class="stat-summary-icon-box teal">
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A1 1 0 0112 2.586L15.414 6A1 1 0 0116 6.586V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 2h2v2H6V6zm4 0h2v2h-2V6zm2 4H6v2h6v-2zm-6 4h6v2H6v-2z" clip-rule="evenodd"></path></svg>
-        </div>
-    </div>
-
-    <div class="stat-summary-card accent-blue">
-        <div class="stat-summary-info">
-            <h4>Tenaga Kesehatan</h4>
-            <h2>{{ \App\Models\Doctor::count() ?? 48 }}</h2>
-        </div>
-        <div class="stat-summary-icon-box blue">
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
-        </div>
-    </div>
-
-    <div class="stat-summary-card accent-amber">
-        <div class="stat-summary-info">
-            <h4>Stok Obat Apotek</h4>
-            <h2>{{ \App\Models\Medicine::count() ?? 320 }}</h2>
-        </div>
-        <div class="stat-summary-icon-box amber">
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7 4a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zM6 6a2 2 0 00-2 2v9a2 2 0 002 2h8a2 2 0 002-2V8a2 2 0 00-2-2H6zm2 5a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-        </div>
-    </div>
-</div>
-
 <!-- ROW 1: WELCOME BANNER & WEEKLY VISITS -->
 <div class="grid-2">
     <!-- Welcome Banner with visible background -->
@@ -82,7 +39,7 @@
                     </div>
                     <div>
                         <div class="stat-pill-number">{{ $displayAppointments }}</div>
-                        <div class="stat-pill-label">Appointments</div>
+                        <div class="stat-pill-label">Kunjungan</div>
                     </div>
                 </div>
                 <div class="stat-pill">
@@ -93,7 +50,7 @@
                     </div>
                     <div>
                         <div class="stat-pill-number">{{ $displaySurgeries }}</div>
-                        <div class="stat-pill-label">Surgeries</div>
+                        <div class="stat-pill-label">Tindakan Medis</div>
                     </div>
                 </div>
             </div>
@@ -103,7 +60,7 @@
     <!-- Patients Trend Line Chart (Dark theme box) -->
     <div class="card patients-trend-card">
         <div class="card-title-bar">
-            <h3 class="card-title">Patients Trend</h3>
+            <h3 class="card-title">Tren Kunjungan Pasien</h3>
         </div>
         <div class="chart-container">
             <canvas id="patientsTrendChart"></canvas>
@@ -119,7 +76,7 @@
     <!-- 1. Doctors Card (1fr) -->
     <div class="card">
         <div class="card-title-bar">
-            <h3 class="card-title">Doctors</h3>
+            <h3 class="card-title">Daftar Dokter & Nakes</h3>
         </div>
         <div class="doctors-list">
             @foreach($doctorsList as $doc)
@@ -132,7 +89,7 @@
                     </div>
                 </div>
                 <span class="status-pill {{ $doc->status === 'Available' ? 'available' : 'not-available' }}">
-                    {{ $doc->status === 'Available' ? 'Available' : 'Not Available' }}
+                    {{ $doc->status === 'Available' ? 'Praktik' : 'Tidak Praktik' }}
                 </span>
             </div>
             @endforeach

@@ -24,13 +24,7 @@ class DashboardController extends Controller
         $displaySurgeries = $totalSurgeries + 22; // Baseline 22 + real records
 
         // 2. Doctors List (matching reference "Doctors" card)
-        $doctorsList = Doctor::whereIn('name', [
-            'Dr. Smith Chang',
-            'Dr. Dmitriy Groshev',
-            'Dr. Sheryl Glass',
-            'Dr. Gabriela Tyler',
-            'Dr. Lilly Chavez'
-        ])->get();
+        $doctorsList = Doctor::take(5)->get();
 
         // 3. Patients Table (matching reference "Patients" table)
         // We retrieve the latest 5 medical records with their patients and doctors
