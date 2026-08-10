@@ -9,6 +9,15 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\MockController;
 
+// 0. Auth & Login Routes
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::post('/login', function () {
+    return redirect()->route('dashboard')->with('success', 'Berhasil masuk ke akun Poliklinik Al-Azhar!');
+})->name('login.perform');
+
 // 1. Dashboard Route
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -43,15 +52,23 @@ Route::resource('/poli', PoliController::class)->names([
     'destroy' => 'poli.destroy',
 ]);
 
-// 5. Medicines (Inventaris & Pengadaan) Routes
+// 5. Medicines (Inventaris, Gudang, & Pengadaan) Routes
 Route::get('/obat', [MedicineController::class, 'index'])->name('medicines.index');
+Route::post('/obat', [MedicineController::class, 'storeMedicine'])->name('medicines.store_medicine');
+Route::put('/obat/{id}', [MedicineController::class, 'updateMedicine'])->name('medicines.update_medicine');
+Route::delete('/obat/{id}', [MedicineController::class, 'destroyMedicine'])->name('medicines.destroy_medicine');
+
 Route::get('/obat/pengadaan', [MedicineController::class, 'pengadaan'])->name('medicines.pengadaan');
+Route::post('/obat/invoice', [MedicineController::class, 'storeInvoice'])->name('medicines.store_invoice');
 Route::post('/obat/pengadaan', [MedicineController::class, 'storeProcurement'])->name('medicines.store_procurement');
 Route::post('/obat/pengadaan/{id}/status', [MedicineController::class, 'updateProcurementStatus'])->name('medicines.update_procurement_status');
 
-// 6. Mock Routes for complete child submenus (Reports, Campus Stock, Parameters)
-Route::get('/obat/stok-kampus', [MockController::class, 'obatMock'])->defaults('type', 'stok-kampus')->name('mock.stok_kampus');
-Route::get('/obat/permohonan-stok', [MockController::class, 'obatMock'])->defaults('type', 'permohonan-stok')->name('mock.permohonan_stok');
+Route::get('/obat/stok-kampus', [MedicineController::class, 'stokKampus'])->name('mock.stok_kampus');
 
+Route::get('/obat/permohonan-stok', [MedicineController::class, 'permohonanStok'])->name('mock.permohonan_stok');
+Route::post('/obat/permohonan-stok', [MedicineController::class, 'storeStockRequest'])->name('medicines.store_stock_request');
+Route::post('/obat/permohonan-stok/{id}/status', [MedicineController::class, 'updateRequestStatus'])->name('medicines.update_request_status');
+
+// 6. Mock Rekap & Settings Routes
 Route::get('/rekap/{type}', [MockController::class, 'rekap'])->name('mock.rekap');
 Route::get('/pengaturan/{type}', [MockController::class, 'pengaturan'])->name('mock.pengaturan');

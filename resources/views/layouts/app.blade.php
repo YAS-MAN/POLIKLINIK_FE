@@ -15,7 +15,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- Default state starts expanded (maximized) for seamless child nav experience -->
     <div class="app-container expanded">
         
         <!-- SIDEBAR LEFT (CLICKABLE COLLAPSIBLE) -->
@@ -28,8 +27,8 @@
                 <div class="logo-container" onclick="toggleSidebar(true)">
                     <img src="{{ asset('poliklinik favicon.png') }}" alt="Poliklinik Al-Azhar Logo">
                     <div class="sidebar-text logo-text-group" style="display: flex; flex-direction: column; line-height: 1.15; text-align: left;">
-                        <span style="color: #228781; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Poliklinik</span>
-                        <span style="color: #0282C6; font-size: 19px; font-weight: 800; letter-spacing: 0.3px;">Al-Azhar</span>
+                        <span style="color: #4F58BA; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Poliklinik</span>
+                        <span style="color: #ffffff; font-size: 19px; font-weight: 800; letter-spacing: 0.3px;">Al-Azhar</span>
                     </div>
                 </div>
                 <!-- Collapse Trigger Button -->
@@ -38,21 +37,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </button>
-            </div>
-            
-            <!-- Enhanced Profile Box -->
-            <div class="profile-card">
-                <div style="position: relative; display: inline-block;">
-                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop" alt="dr. Siti Rahmawati" class="profile-avatar">
-                    <span title="Status: Online & Tugas" style="position: absolute; bottom: 2px; right: 2px; width: 13px; height: 13px; background-color: #22c55e; border: 2px solid #228781; border-radius: 50%;"></span>
-                </div>
-                <div class="profile-info-text">
-                    <h3 class="profile-name">dr. Siti Rahmawati</h3>
-                    <span class="profile-role">Super Admin</span>
-                    <div style="margin-top: 5px; display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; background: rgba(255, 255, 255, 0.18); border-radius: 12px; font-size: 10.5px; font-weight: 600; color: #ffffff; backdrop-filter: blur(4px);">
-                        <span style="width: 6px; height: 6px; border-radius: 50%; background-color: #4ade80;"></span> Praktik Aktif
-                    </div>
-                </div>
             </div>
             
             <!-- Navigation Links -->
@@ -291,8 +275,13 @@
                         <span class="badge"></span>
                     </button>
                     
-                    <div class="user-menu">
+                    <!-- CLICKABLE PROFILE TRIGGER -->
+                    <div class="user-menu" onclick="toggleProfileDrawer(true)" title="Klik untuk Edit Profil Pengguna">
                         <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop" alt="dr. Siti Rahmawati">
+                        <div style="display: flex; flex-direction: column; text-align: left; margin-left: 2px;">
+                            <span style="font-size: 13px; font-weight: 700; color: var(--text-color); line-height: 1.1;">dr. Siti Rahmawati</span>
+                            <span style="font-size: 11px; color: var(--primary-color); font-weight: 600;">Edit Profil &rsaquo;</span>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -323,7 +312,74 @@
         </div>
     </div>
     
-    <!-- Script Clickable Sidebar & Role Access Switcher -->
+    <!-- SLIDE-OVER RIGHT-TO-LEFT PROFILE DRAWER MODAL -->
+    <div id="profileDrawerBackdrop" class="profile-drawer-backdrop" onclick="toggleProfileDrawer(false)"></div>
+    
+    <div id="profileDrawer" class="profile-drawer">
+        <div class="drawer-header">
+            <h3>Pengaturan Profil Saya</h3>
+            <button type="button" class="drawer-close-btn" onclick="toggleProfileDrawer(false)" title="Tutup">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="drawer-body">
+            <div class="drawer-profile-top">
+                <div style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop" alt="dr. Siti Rahmawati" class="drawer-avatar-lg">
+                    <button type="button" onclick="alert('Pilih foto profil baru dari perangkat')" style="position: absolute; bottom: 4px; right: 4px; background: var(--primary-color); color: white; border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm);" title="Ganti Foto Profile">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
+                    </button>
+                </div>
+                <h3 class="drawer-name" id="drawerDisplayName">dr. Siti Rahmawati, Sp.PD</h3>
+                <span class="drawer-role" id="drawerDisplayRole">Super Admin • Penyakit Dalam</span>
+            </div>
+            
+            <form onsubmit="saveProfileChanges(event)">
+                <div class="form-group">
+                    <label>Nama Lengkap & Gelar</label>
+                    <input type="text" id="profNameInput" value="dr. Siti Rahmawati, Sp.PD" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Spesialisasi / Jabatan</label>
+                    <input type="text" id="profSpecInput" value="Penyakit Dalam (Sp.PD)" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Alamat Email</label>
+                    <input type="email" id="profEmailInput" value="siti.rahmawati@alazhar.ac.id" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Nomor HP / WhatsApp</label>
+                    <input type="text" id="profPhoneInput" value="0812-3456-7890" required>
+                </div>
+                
+                <div class="form-group" style="margin-top: 10px;">
+                    <label style="display: flex; align-items: center; justify-content: space-between;">
+                        <span>Status Praktik Aktif:</span>
+                        <label class="switch">
+                            <input type="checkbox" checked id="profStatusToggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </label>
+                </div>
+                
+                <div style="margin-top: 24px; display: flex; gap: 10px;">
+                    <button type="submit" class="btn-primary" style="flex: 1; justify-content: center;">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 00-1.414-1.414L10 12.586l-2.293-2.293z"></path></svg>
+                        Simpan Perubahan
+                    </button>
+                    <button type="button" class="btn-outline" onclick="toggleProfileDrawer(false)">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script Clickable Sidebar, Profile Drawer, & Role Access Switcher -->
     <script>
         function toggleSidebar(forceExpand) {
             const container = document.querySelector('.app-container');
@@ -368,6 +424,34 @@
             }
         }
 
+        // Profile Off-Canvas Drawer Toggle
+        function toggleProfileDrawer(open) {
+            const backdrop = document.getElementById('profileDrawerBackdrop');
+            const drawer = document.getElementById('profileDrawer');
+            if (open) {
+                backdrop.classList.add('active');
+                drawer.classList.add('active');
+            } else {
+                backdrop.classList.remove('active');
+                drawer.classList.remove('active');
+            }
+        }
+
+        function saveProfileChanges(e) {
+            e.preventDefault();
+            const newName = document.getElementById('profNameInput').value;
+            const newSpec = document.getElementById('profSpecInput').value;
+            
+            document.getElementById('drawerDisplayName').textContent = newName;
+            
+            // Update header name display
+            const headerName = document.querySelector('.user-menu span');
+            if (headerName) headerName.textContent = newName;
+            
+            alert('Profil pengguna berhasil diperbarui!');
+            toggleProfileDrawer(false);
+        }
+
         function confirmLogout() {
             if (confirm("Apakah Anda yakin ingin keluar dari akun Poliklinik Al-Azhar?")) {
                 alert("Anda berhasil keluar dari sistem!");
@@ -403,19 +487,13 @@
                 if (masterSubmenu) masterSubmenu.style.display = 'none';
                 if (masterNavLink) masterNavLink.style.display = 'none';
             }
-
-            const roleLabel = document.querySelector('.profile-role');
-            if (roleLabel) {
-                roleLabel.textContent = role;
-            }
         }
 
-        // Initialize default states on load - EXPANDED BY DEFAULT
+        // Initialize default states on load
         document.addEventListener('DOMContentLoaded', () => {
             const currentRole = localStorage.getItem('selected_role') || 'Super Admin';
             applyRole(currentRole);
 
-            // Default sidebar state: EXPANDED unless explicitly saved as 'false'
             const sidebarState = localStorage.getItem('sidebar_expanded');
             const container = document.querySelector('.app-container');
             if (sidebarState === 'false') {
