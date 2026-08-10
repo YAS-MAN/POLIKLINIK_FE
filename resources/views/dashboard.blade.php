@@ -69,8 +69,8 @@
     <!-- Welcome Banner with visible background -->
     <div class="card welcome-card">
         <div class="welcome-info">
-            <span class="welcome-subtitle">Good Morning,</span>
-            <h1 class="welcome-title">Dr. Ema Wilson</h1>
+            <span class="welcome-subtitle">Selamat Pagi,</span>
+            <h1 class="welcome-title">dr. Siti Rahmawati, Sp.PD</h1>
             <p class="welcome-desc">Selamat datang kembali di sistem pengelolaan Poliklinik Al-Azhar. Pantau status antrean kunjungan pasien, riwayat Rekam Medis Elektronik (RME), serta ketersediaan stok obat apotek secara berkala.</p>
             
             <div class="welcome-stats">

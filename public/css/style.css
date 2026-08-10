@@ -78,7 +78,7 @@ input, button, select, textarea {
     display: flex;
     flex-direction: column;
     z-index: 1000;
-    padding: 24px 0 24px 8px;
+    padding: 16px 0 24px 8px;
     overflow-x: hidden;
     overflow-y: auto;
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -96,31 +96,54 @@ input, button, select, textarea {
     border-radius: 10px;
 }
 
-/* BOTANICAL SIDEBAR DECORATIVE ART BACKGROUND (Matching Reference Bottom Graphics) */
-.sidebar-art-bg {
+/* SIDEBAR TOP GLOWING ACCENT ART (Framing the top logo area) */
+.sidebar-top-art {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
+    height: 140px;
+    background: radial-gradient(circle at 10% 10%, rgba(34, 135, 129, 0.4), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* BOTANICAL SIDEBAR DECORATIVE ART BACKGROUND (Fixed at viewport bottom so scrolling doesn't push it up) */
+.sidebar-art-bg {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 70px;
     height: 220px;
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 220' fill='none'%3E%3Cpath d='M-20 220C40 160 90 190 140 140C190 90 200 160 270 120V220H-20Z' fill='%23228781' fill-opacity='0.22'/%3E%3Cpath d='M-30 220C50 180 80 130 150 160C220 190 230 110 280 140V220H-30Z' fill='%23207F23' fill-opacity='0.25'/%3E%3Ccircle cx='50' cy='160' r='45' fill='%23a7f3d0' fill-opacity='0.15'/%3E%3Cpath d='M160 100C130 130 100 110 80 150C110 135 145 145 160 100Z' fill='%23228781' fill-opacity='0.3'/%3E%3Cpath d='M80 60C60 90 40 80 20 120C50 105 75 115 80 60Z' fill='%23207F23' fill-opacity='0.28'/%3E%3C/svg%3E");
     background-size: cover;
     background-position: bottom left;
     pointer-events: none;
     z-index: 0;
-    transition: opacity 0.3s ease;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-container.expanded .sidebar-art-bg {
+    width: 250px;
 }
 
 .sidebar-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 22px;
-    padding-right: 12px;
-    padding-left: 10px;
-    width: 230px;
+    margin-bottom: 16px;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    width: 54px;
     flex-shrink: 0;
     z-index: 2;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-container.expanded .sidebar-header {
+    width: 234px;
 }
 
 .logo-container {
@@ -144,8 +167,8 @@ input, button, select, textarea {
 }
 
 .app-container.expanded .logo-container img {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
 }
 
 /* Toggler Collapse Button */
@@ -207,9 +230,10 @@ input, button, select, textarea {
     overflow: hidden;
     margin-top: 5px;
     flex-shrink: 0;
-    box-shadow: 0 4px 14px rgba(34, 135, 129, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 14px rgba(34, 135, 129, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     z-index: 2;
+    position: relative;
 }
 
 .app-container.expanded .profile-card {
@@ -222,7 +246,7 @@ input, button, select, textarea {
     height: 38px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--white);
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
 }
@@ -230,7 +254,7 @@ input, button, select, textarea {
 .app-container.expanded .profile-avatar {
     width: 58px;
     height: 58px;
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
 .profile-info-text {
@@ -244,13 +268,13 @@ input, button, select, textarea {
 
 .app-container.expanded .profile-info-text {
     opacity: 1;
-    max-height: 80px;
+    max-height: 100px;
     margin-top: 10px;
     display: block;
 }
 
 .profile-name {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14.5px;
     color: var(--white);
     white-space: nowrap;
@@ -334,7 +358,7 @@ input, button, select, textarea {
     transform: scale(1.1);
 }
 
-/* SEAMLESS BRIDGING ACTIVE LINK TRANSITION (Matching Reference Image) */
+/* SEAMLESS BRIDGING ACTIVE LINK TRANSITION */
 .app-container.expanded .nav-link.active {
     background-color: var(--bg-color); /* Matches main content canvas #f2f6f3 */
     color: var(--primary-color);
@@ -614,7 +638,7 @@ input, button, select, textarea {
     padding: 11px 16px 11px 42px;
     border: 1.5px solid var(--border-color);
     background-color: var(--bg-color);
-    border-radius: 30px; /* Modern Pill Search Input */
+    border-radius: 30px;
     font-size: 14px;
     transition: var(--transition);
 }
@@ -800,7 +824,7 @@ input, button, select, textarea {
     }
 }
 
-/* TOP SUMMARY STAT METRIC CARDS (Matching Reference Top Cards Accent Border) */
+/* TOP STAT SUMMARY METRIC CARDS */
 .stat-summary-card {
     background-color: var(--white);
     border: 1px solid var(--border-color);

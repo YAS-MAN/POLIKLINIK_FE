@@ -15,36 +15,43 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- The layout starts as expanded by default -->
-    <div class="app-container expanded">
+    <!-- Default state starts minimized (collapsed) without expanded class -->
+    <div class="app-container">
         
         <!-- SIDEBAR LEFT (CLICKABLE COLLAPSIBLE) -->
         <aside class="sidebar">
-            <!-- Botanical Leaf Background Art Overlay -->
+            <!-- Glowing Top Accent & Botanical Bottom Background Art Overlays -->
+            <div class="sidebar-top-art"></div>
             <div class="sidebar-art-bg"></div>
 
             <div class="sidebar-header">
                 <div class="logo-container" onclick="toggleSidebar(true)">
                     <img src="{{ asset('poliklinik favicon.png') }}" alt="Poliklinik Al-Azhar Logo">
                     <div class="sidebar-text logo-text-group" style="display: flex; flex-direction: column; line-height: 1.15; text-align: left;">
-                        <span style="color: #228781; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Poliklinik</span>
-                        <span style="color: #0282C6; font-size: 20px; font-weight: 800; letter-spacing: 0.3px;">Al-Azhar</span>
+                        <span style="color: #228781; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Poliklinik</span>
+                        <span style="color: #0282C6; font-size: 19px; font-weight: 800; letter-spacing: 0.3px;">Al-Azhar</span>
                     </div>
                 </div>
                 <!-- Collapse Trigger Button -->
-                <button type="button" class="sidebar-collapse-btn" onclick="toggleSidebar(false); event.stopPropagation();">
+                <button type="button" class="sidebar-collapse-btn" onclick="toggleSidebar(false); event.stopPropagation();" title="Tutup Navigasi">
                     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </button>
             </div>
             
-            <!-- Profile Box -->
+            <!-- Enhanced Profile Box with Status Badge -->
             <div class="profile-card">
-                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop" alt="Dr. Ema Wilson" class="profile-avatar">
+                <div style="position: relative; display: inline-block;">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop" alt="dr. Siti Rahmawati" class="profile-avatar">
+                    <span title="Status: Online & Tugas" style="position: absolute; bottom: 2px; right: 2px; width: 13px; height: 13px; background-color: #22c55e; border: 2px solid #228781; border-radius: 50%;"></span>
+                </div>
                 <div class="profile-info-text">
-                    <h3 class="profile-name">Dr. Ema Wilson</h3>
+                    <h3 class="profile-name">dr. Siti Rahmawati</h3>
                     <span class="profile-role">Super Admin</span>
+                    <div style="margin-top: 5px; display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; background: rgba(255, 255, 255, 0.18); border-radius: 12px; font-size: 10.5px; font-weight: 600; color: #ffffff; backdrop-filter: blur(4px);">
+                        <span style="width: 6px; height: 6px; border-radius: 50%; background-color: #4ade80;"></span> Praktik Aktif
+                    </div>
                 </div>
             </div>
             
@@ -221,7 +228,7 @@
             
             <!-- Sidebar Footer: Ambulance Call & Logout -->
             <div class="sidebar-footer">
-                <div class="emergency-card" onclick="alert('Panggilan Darurat Dikirim ke Layanan Ambulans Utama!')">
+                <div class="emergency-card" onclick="alert('Panggilan Darurat Dikirim ke Layanan Ambulans Utama Poliklinik Al-Azhar!')">
                     <div class="emergency-icon">
                         <!-- Phone Icon -->
                         <svg viewBox="0 0 20 20" fill="currentColor">
@@ -285,7 +292,7 @@
                     </button>
                     
                     <div class="user-menu">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop" alt="Dr. Ema Wilson">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop" alt="dr. Siti Rahmawati">
                     </div>
                 </div>
             </header>
@@ -344,10 +351,7 @@
             
             const submenu = el.nextElementSibling;
             if (submenu && submenu.classList.contains('submenu-list')) {
-                // If it is closed, let's open it and close others
                 const isOpen = submenu.classList.contains('show');
-                
-                // Toggle current submenu
                 if (isOpen) {
                     submenu.classList.remove('show');
                 } else {
@@ -365,8 +369,8 @@
         }
 
         function confirmLogout() {
-            if (confirm("Apakah Anda yakin ingin keluar dari akun?")) {
-                alert("Anda berhasil keluar dari sistem Poliklinik Al-Azhar!");
+            if (confirm("Apakah Anda yakin ingin keluar dari akun Poliklinik Al-Azhar?")) {
+                alert("Anda berhasil keluar dari sistem!");
                 window.location.reload();
             }
         }
@@ -406,18 +410,18 @@
             }
         }
 
-        // Initialize default states on load
+        // Initialize default states on load - MINIMIZED BY DEFAULT
         document.addEventListener('DOMContentLoaded', () => {
             const currentRole = localStorage.getItem('selected_role') || 'Super Admin';
             applyRole(currentRole);
 
-            // Default sidebar state: true (expanded) if not explicitly set to false
+            // Default sidebar state: MINIMIZED (collapsed) unless explicitly saved as 'true'
             const sidebarState = localStorage.getItem('sidebar_expanded');
             const container = document.querySelector('.app-container');
-            if (sidebarState === 'false') {
-                container.classList.remove('expanded');
-            } else {
+            if (sidebarState === 'true') {
                 container.classList.add('expanded');
+            } else {
+                container.classList.remove('expanded');
             }
         });
     </script>
