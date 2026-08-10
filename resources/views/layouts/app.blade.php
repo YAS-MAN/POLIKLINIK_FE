@@ -20,6 +20,9 @@
         
         <!-- SIDEBAR LEFT (CLICKABLE COLLAPSIBLE) -->
         <aside class="sidebar">
+            <!-- Botanical Leaf Background Art Overlay -->
+            <div class="sidebar-art-bg"></div>
+
             <div class="sidebar-header">
                 <div class="logo-container" onclick="toggleSidebar(true)">
                     <img src="{{ asset('poliklinik favicon.png') }}" alt="Poliklinik Al-Azhar Logo">

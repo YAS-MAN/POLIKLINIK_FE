@@ -9,27 +9,27 @@
     --secondary-hover: #1b6a65;
     --secondary-light: #e5f5f4;
     --sidebar-bg: #113f13; /* Dark Green Sidebar */
-    --sidebar-active: #f4f9f4; /* Matches page content background */
-    --bg-color: #f4f9f4; /* Soft green-ish white background */
+    --sidebar-active: #f2f6f3; /* Matches main page content background for seamless bridge */
+    --bg-color: #f2f6f3; /* Soft green-ish light sage canvas background */
     --card-bg: #ffffff;
     --text-color: #2c3e2b;
     --text-muted: #627761;
-    --border-color: #e2ebe2;
+    --border-color: #e1ebe2;
     --white: #ffffff;
     
     --success: #207F23;
     --danger: #dc2626;
-    --warning: #ca8a04;
+    --warning: #f59e0b;
     --info: #0284c7;
 
     --font-primary: 'Outfit', 'Inter', sans-serif;
     --shadow-sm: 0 2px 8px rgba(32, 127, 35, 0.04);
-    --shadow-md: 0 4px 20px rgba(32, 127, 35, 0.06);
-    --shadow-lg: 0 10px 30px rgba(32, 127, 35, 0.08);
+    --shadow-md: 0 6px 20px rgba(17, 63, 19, 0.06);
+    --shadow-lg: 0 12px 32px rgba(17, 63, 19, 0.09);
     
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
     
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -85,7 +85,7 @@ input, button, select, textarea {
 }
 
 .app-container.expanded .sidebar {
-    width: 250px; /* Adjusted to 250px to make it slightly smaller and less cramped */
+    width: 250px;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -96,15 +96,31 @@ input, button, select, textarea {
     border-radius: 10px;
 }
 
+/* BOTANICAL SIDEBAR DECORATIVE ART BACKGROUND (Matching Reference Bottom Graphics) */
+.sidebar-art-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 220' fill='none'%3E%3Cpath d='M-20 220C40 160 90 190 140 140C190 90 200 160 270 120V220H-20Z' fill='%23228781' fill-opacity='0.22'/%3E%3Cpath d='M-30 220C50 180 80 130 150 160C220 190 230 110 280 140V220H-30Z' fill='%23207F23' fill-opacity='0.25'/%3E%3Ccircle cx='50' cy='160' r='45' fill='%23a7f3d0' fill-opacity='0.15'/%3E%3Cpath d='M160 100C130 130 100 110 80 150C110 135 145 145 160 100Z' fill='%23228781' fill-opacity='0.3'/%3E%3Cpath d='M80 60C60 90 40 80 20 120C50 105 75 115 80 60Z' fill='%23207F23' fill-opacity='0.28'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: bottom left;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+}
+
 .sidebar-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
     padding-right: 12px;
     padding-left: 10px;
     width: 230px;
-    flex-shrink: 0; /* Prevent header from squishing */
+    flex-shrink: 0;
+    z-index: 2;
 }
 
 .logo-container {
@@ -124,22 +140,23 @@ input, button, select, textarea {
     object-fit: contain;
     background: transparent;
     transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
 }
 
 .app-container.expanded .logo-container img {
-    width: 52px; /* Large stethoscope logo */
+    width: 52px;
     height: 52px;
 }
 
 /* Toggler Collapse Button */
 .sidebar-collapse-btn {
-    display: none; /* Only show when expanded */
-    background: none;
+    display: none;
+    background: rgba(255, 255, 255, 0.1);
     border: none;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
+    padding: 6px;
+    border-radius: 8px;
     align-items: center;
     justify-content: center;
     transition: var(--transition);
@@ -150,7 +167,7 @@ input, button, select, textarea {
 }
 
 .sidebar-collapse-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
     color: var(--white);
 }
 
@@ -174,7 +191,7 @@ input, button, select, textarea {
     display: flex !important;
 }
 
-/* Profile Card state - Styled with Hex 228781 Secondary gradient */
+/* Profile Card state */
 .profile-card {
     display: flex;
     flex-direction: column;
@@ -182,22 +199,22 @@ input, button, select, textarea {
     padding: 10px 8px;
     background: linear-gradient(135deg, var(--secondary-color), #1a6d68);
     border-radius: var(--radius-md);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     margin-right: 8px;
     text-align: center;
     transition: all 0.3s ease;
     width: 54px;
     overflow: hidden;
-    margin-top: 10px;
-    flex-shrink: 0; /* Prevent profile card from squishing */
-    box-shadow: 0 4px 12px rgba(34, 135, 129, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 5px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(34, 135, 129, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    z-index: 2;
 }
 
 .app-container.expanded .profile-card {
     padding: 16px 14px;
     width: 226px;
-    margin-top: 15px;
 }
 
 .profile-avatar {
@@ -211,9 +228,9 @@ input, button, select, textarea {
 }
 
 .app-container.expanded .profile-avatar {
-    width: 60px;
-    height: 60px;
-    border-color: rgba(255, 255, 255, 0.45);
+    width: 58px;
+    height: 58px;
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .profile-info-text {
@@ -241,7 +258,7 @@ input, button, select, textarea {
 
 .profile-role {
     font-size: 11.5px;
-    color: #e5f5f4; /* Teal white accent */
+    color: #e5f5f4;
     margin-top: 2px;
     font-weight: 500;
     white-space: nowrap;
@@ -254,6 +271,7 @@ input, button, select, textarea {
     gap: 6px;
     flex-grow: 1;
     width: 250px;
+    z-index: 2;
 }
 
 .nav-category {
@@ -261,7 +279,7 @@ input, button, select, textarea {
     font-size: 11px;
     text-transform: uppercase;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.45);
     padding: 0;
     letter-spacing: 0.8px;
 }
@@ -271,7 +289,6 @@ input, button, select, textarea {
     padding: 12px 10px 6px 16px;
 }
 
-/* FORCE HIDE nav categories when collapsed (overrides dynamic inline styling) */
 .app-container:not(.expanded) .nav-category {
     display: none !important;
 }
@@ -281,9 +298,9 @@ input, button, select, textarea {
     align-items: center;
     gap: 14px;
     padding: 12px;
-    justify-content: center; /* Centered in collapsed */
+    justify-content: center;
     border-radius: var(--radius-sm);
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.75);
     font-weight: 500;
     font-size: 14px;
     transition: var(--transition);
@@ -310,23 +327,37 @@ input, button, select, textarea {
     height: 20px;
     flex-shrink: 0;
     color: inherit;
+    transition: transform 0.2s ease;
 }
 
-/* CURVED SEAMLESS ACTIVE LINK - Expanded state only */
+.nav-link:hover svg {
+    transform: scale(1.1);
+}
+
+/* SEAMLESS BRIDGING ACTIVE LINK TRANSITION (Matching Reference Image) */
 .app-container.expanded .nav-link.active {
-    background-color: var(--sidebar-active);
+    background-color: var(--bg-color); /* Matches main content canvas #f2f6f3 */
     color: var(--primary-color);
     font-weight: 700;
     position: relative;
-    border-top-left-radius: 24px;
-    border-bottom-left-radius: 24px;
+    border-top-left-radius: 26px;
+    border-bottom-left-radius: 26px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     margin-right: -1px; /* Overlap border completely */
-    padding-right: 32px;
+    padding-right: 28px;
     z-index: 100;
-    box-shadow: none;
-    border-right: 2px solid var(--sidebar-active); /* Hide borders */
+    box-shadow: -4px 6px 16px rgba(0, 0, 0, 0.04);
+}
+
+.app-container.expanded .nav-link.active svg {
+    color: var(--primary-color);
+    background-color: var(--white);
+    padding: 4px;
+    border-radius: 8px;
+    width: 28px;
+    height: 28px;
+    box-shadow: var(--shadow-sm);
 }
 
 .app-container.expanded .nav-link.active::before {
@@ -338,7 +369,7 @@ input, button, select, textarea {
     height: 24px;
     background-color: transparent;
     border-bottom-right-radius: 24px;
-    box-shadow: 10px 10px 0 10px var(--sidebar-active);
+    box-shadow: 10px 10px 0 10px var(--bg-color);
     pointer-events: none;
     z-index: 1000;
 }
@@ -352,12 +383,12 @@ input, button, select, textarea {
     height: 24px;
     background-color: transparent;
     border-top-right-radius: 24px;
-    box-shadow: 10px -10px 0 10px var(--sidebar-active);
+    box-shadow: 10px -10px 0 10px var(--bg-color);
     pointer-events: none;
     z-index: 1000;
 }
 
-/* Collapsed active link - clean highlights without curves extending boundaries */
+/* Collapsed active link - clean highlights */
 .app-container:not(.expanded) .nav-link.active {
     background-color: var(--primary-color);
     color: var(--white);
@@ -371,7 +402,7 @@ input, button, select, textarea {
     display: none !important;
 }
 
-/* SUBMENU / CHILD NAVIGATION STYLE WITH SMOOTH DROPDOWN TRANSITION - ACTIVE SHOWN IN TEAL SECONDARY */
+/* SUBMENU / CHILD NAVIGATION STYLE */
 .submenu-list {
     display: flex;
     flex-direction: column;
@@ -405,14 +436,14 @@ input, button, select, textarea {
 
 .submenu-link:hover {
     color: var(--white);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Highlight Active Submenu Items in Teal secondary branding */
 .submenu-link.active {
     color: var(--secondary-color);
-    background-color: var(--secondary-light);
+    background-color: var(--white);
     font-weight: 600;
+    box-shadow: var(--shadow-sm);
 }
 
 .submenu-link svg {
@@ -420,17 +451,18 @@ input, button, select, textarea {
     height: 14px;
 }
 
-/* Sidebar Footer (Emergency and Logout) */
+/* Sidebar Footer */
 .sidebar-footer {
     margin-top: auto;
     padding-top: 20px;
     padding-right: 8px;
     width: 234px;
-    flex-shrink: 0; /* Prevent footer from squishing */
+    flex-shrink: 0;
+    z-index: 2;
 }
 
 .emergency-card {
-    background-color: var(--danger); /* SOLID RED */
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
     color: var(--white);
     padding: 12px 8px;
     border-radius: var(--radius-md);
@@ -441,16 +473,17 @@ input, button, select, textarea {
     overflow: hidden;
     transition: width 0.3s ease, padding 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
 }
 
 .app-container.expanded .emergency-card {
     width: 226px;
-    padding: 16px;
+    padding: 14px 16px;
 }
 
 .emergency-card:hover {
-    background-color: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.45);
 }
 
 .emergency-icon {
@@ -500,8 +533,8 @@ input, button, select, textarea {
     display: flex;
     align-items: center;
     gap: 12px;
-    background-color: transparent;
-    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.85);
     padding: 10px;
     justify-content: center;
@@ -522,7 +555,7 @@ input, button, select, textarea {
 }
 
 .logout-btn:hover {
-    background-color: rgba(220, 38, 38, 0.15);
+    background-color: rgba(220, 38, 38, 0.2);
     border-color: #dc2626;
     color: #f87171;
 }
@@ -542,7 +575,7 @@ input, button, select, textarea {
     display: inline;
 }
 
-/* MAIN CONTENT WRAPPER - Pushed dynamically when expanded */
+/* MAIN CONTENT WRAPPER - Pushed dynamically */
 .main-wrapper {
     margin-left: 70px;
     flex-grow: 1;
@@ -550,6 +583,7 @@ input, button, select, textarea {
     display: flex;
     flex-direction: column;
     transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: var(--bg-color);
 }
 
 .app-container.expanded .main-wrapper {
@@ -567,32 +601,33 @@ input, button, select, textarea {
     position: sticky;
     top: 0;
     z-index: 99;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
 .search-bar {
     position: relative;
-    width: 320px;
+    width: 340px;
 }
 
 .search-bar input {
     width: 100%;
-    padding: 10px 16px 10px 40px;
-    border: 1px solid var(--border-color);
+    padding: 11px 16px 11px 42px;
+    border: 1.5px solid var(--border-color);
     background-color: var(--bg-color);
-    border-radius: var(--radius-sm);
+    border-radius: 30px; /* Modern Pill Search Input */
     font-size: 14px;
     transition: var(--transition);
 }
 
 .search-bar input:focus {
-    border-color: var(--primary-color);
+    border-color: var(--secondary-color);
     background-color: var(--white);
-    box-shadow: 0 0 0 3px var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(34, 135, 129, 0.12);
 }
 
 .search-bar svg {
     position: absolute;
-    left: 14px;
+    left: 16px;
     top: 50%;
     transform: translateY(-50%);
     width: 18px;
@@ -612,6 +647,10 @@ input, button, select, textarea {
     gap: 8px;
     font-size: 14px;
     cursor: pointer;
+    padding: 6px 12px;
+    background-color: var(--bg-color);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
 }
 
 .flag-icon {
@@ -622,28 +661,28 @@ input, button, select, textarea {
 }
 
 .role-switcher-select {
-    padding: 8px 12px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 20px;
     font-size: 13.5px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-color);
-    background-color: var(--white);
+    background-color: var(--bg-color);
     cursor: pointer;
     transition: var(--transition);
 }
 
 .role-switcher-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px var(--primary-light);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px var(--secondary-light);
 }
 
 .header-icon-btn {
-    background: none;
-    border: none;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
     color: var(--text-muted);
     cursor: pointer;
-    padding: 8px;
+    padding: 10px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -653,18 +692,19 @@ input, button, select, textarea {
 }
 
 .header-icon-btn:hover {
-    background-color: var(--primary-light);
-    color: var(--primary-color);
+    background-color: var(--secondary-light);
+    color: var(--secondary-color);
 }
 
 .header-icon-btn .badge {
     position: absolute;
     top: 4px;
     right: 4px;
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     background-color: var(--danger);
     border-radius: 50%;
+    border: 2px solid var(--white);
 }
 
 .user-menu {
@@ -675,16 +715,17 @@ input, button, select, textarea {
 }
 
 .user-menu img {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--primary-light);
+    border: 2px solid var(--secondary-color);
+    box-shadow: var(--shadow-sm);
 }
 
 /* CONTENT CONTAINER */
 .content-container {
-    padding: 24px 30px;
+    padding: 26px 32px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -706,26 +747,26 @@ input, button, select, textarea {
 }
 
 .breadcrumb-item.active {
-    color: var(--secondary-color); /* Highlight breadcrumb active item in Teal */
-    font-weight: 600;
+    color: var(--secondary-color);
+    font-weight: 700;
 }
 
 .date-range-picker {
     background-color: var(--white);
     border: 1px solid var(--border-color);
-    padding: 8px 16px;
-    border-radius: var(--radius-sm);
+    padding: 8px 18px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 14px;
+    font-size: 13.5px;
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
     box-shadow: var(--shadow-sm);
 }
 
 .date-range-picker svg {
-    color: var(--secondary-color); /* Calendar icon highlighted in Teal */
+    color: var(--secondary-color);
 }
 
 /* GRID LAYOUTS */
@@ -741,7 +782,12 @@ input, button, select, textarea {
     gap: 24px;
 }
 
-/* Re-adjusted Row 2 layout ratios: Doctors (1fr) | Consultation (0.75fr) | Review (1.25fr) */
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
 .grid-dashboard-row2 {
     display: grid;
     grid-template-columns: 1fr 0.75fr 1.25fr;
@@ -749,9 +795,84 @@ input, button, select, textarea {
 }
 
 @media (max-width: 1200px) {
-    .grid-2, .grid-3, .grid-dashboard-row2 {
+    .grid-2, .grid-3, .grid-4, .grid-dashboard-row2 {
         grid-template-columns: 1fr;
     }
+}
+
+/* TOP SUMMARY STAT METRIC CARDS (Matching Reference Top Cards Accent Border) */
+.stat-summary-card {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-summary-card.accent-green {
+    border-top: 4px solid var(--primary-color);
+}
+.stat-summary-card.accent-teal {
+    border-top: 4px solid var(--secondary-color);
+}
+.stat-summary-card.accent-blue {
+    border-top: 4px solid var(--info);
+}
+.stat-summary-card.accent-amber {
+    border-top: 4px solid var(--warning);
+}
+
+.stat-summary-info h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.stat-summary-info h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-top: 4px;
+}
+
+.stat-summary-icon-box {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.stat-summary-icon-box.green {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+.stat-summary-icon-box.teal {
+    background-color: var(--secondary-light);
+    color: var(--secondary-color);
+}
+.stat-summary-icon-box.blue {
+    background-color: #e0f2fe;
+    color: #0284c7;
+}
+.stat-summary-icon-box.amber {
+    background-color: #fef3c7;
+    color: #d97706;
 }
 
 /* CARD GENERAL STYLING */
@@ -779,13 +900,13 @@ input, button, select, textarea {
 
 .card-title {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-color);
 }
 
 /* DASHBOARD WELCOME CARD */
 .welcome-card {
-    background-image: linear-gradient(135deg, rgba(34, 135, 129, 0.6), rgba(17, 72, 69, 0.8)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000&auto=format&fit=crop');
+    background-image: linear-gradient(135deg, rgba(34, 135, 129, 0.7), rgba(17, 72, 69, 0.85)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     color: var(--white);
@@ -797,7 +918,8 @@ input, button, select, textarea {
     justify-content: center;
     align-items: flex-start;
     padding: 35px 30px;
-    box-shadow: 0 8px 24px rgba(34, 135, 129, 0.2);
+    box-shadow: 0 10px 28px rgba(34, 135, 129, 0.25);
+    border-radius: var(--radius-lg);
 }
 
 .welcome-info {
@@ -833,21 +955,21 @@ input, button, select, textarea {
 }
 
 .stat-pill {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
     padding: 10px 16px;
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     gap: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .stat-pill-icon {
     width: 32px;
     height: 32px;
     background-color: var(--white);
-    color: var(--secondary-color); /* Highlight welcome banner icons in Teal */
+    color: var(--secondary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -876,6 +998,7 @@ input, button, select, textarea {
     background-color: #113f13;
     color: var(--white);
     border: none;
+    border-radius: var(--radius-lg);
 }
 
 .patients-trend-card .card-title {
@@ -891,7 +1014,7 @@ input, button, select, textarea {
 }
 
 .trend-highlight {
-    background-color: var(--secondary-color); /* Highlight with Teal */
+    background-color: var(--secondary-color);
     padding: 2px 6px;
     border-radius: 4px;
     font-weight: 600;
@@ -951,7 +1074,7 @@ input, button, select, textarea {
 
 .status-pill.available {
     background-color: var(--secondary-light);
-    color: var(--secondary-color); /* Nakes availability highlighted in Teal */
+    color: var(--secondary-color);
 }
 
 .status-pill.not-available {
@@ -1002,7 +1125,7 @@ input, button, select, textarea {
     background-color: var(--bg-color);
     padding: 12px;
     border-radius: var(--radius-sm);
-    border-left: 3px solid var(--secondary-color); /* Highlight quote indicator in Teal */
+    border-left: 3px solid var(--secondary-color);
 }
 
 .rating-stars {
@@ -1013,7 +1136,7 @@ input, button, select, textarea {
 }
 
 .recommend-btn {
-    background-color: var(--secondary-color); /* Highlight review submit button in Teal */
+    background-color: var(--secondary-color);
     color: var(--white);
     border: none;
     padding: 8px 16px;
@@ -1086,7 +1209,7 @@ input, button, select, textarea {
 }
 
 .gender-icon.male {
-    background-color: var(--secondary-color); /* Male icon highlighted in Teal */
+    background-color: var(--secondary-color);
 }
 
 .gender-icon.female {
@@ -1129,7 +1252,7 @@ th {
     background-color: var(--primary-color);
     color: var(--white);
     padding: 14px 20px;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 13px;
     letter-spacing: 0.5px;
 }
@@ -1159,7 +1282,6 @@ tr:last-child td {
     object-fit: cover;
 }
 
-/* Green disease badges remain green */
 .badge-disease {
     background-color: var(--primary-light);
     color: var(--primary-color);
@@ -1170,7 +1292,6 @@ tr:last-child td {
     display: inline-block;
 }
 
-/* CATEGORIZATION BADGES (Murid, Pegawai, dll.) styled in Teal secondary */
 .badge-category {
     background-color: var(--secondary-light);
     color: var(--secondary-color);
@@ -1240,7 +1361,7 @@ tr:last-child td {
 }
 
 .dept-item:hover {
-    border-color: var(--secondary-color); /* Highlight borders in Teal on hover */
+    border-color: var(--secondary-color);
     background-color: var(--secondary-light);
 }
 
@@ -1248,7 +1369,7 @@ tr:last-child td {
     width: 40px;
     height: 40px;
     background-color: var(--secondary-light);
-    color: var(--secondary-color); /* Department icons highlighted in Teal */
+    color: var(--secondary-color);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -1272,7 +1393,7 @@ tr:last-child td {
     position: relative;
 }
 
-/* FORMS AND INTERACTIVITY - REDESIGNED PREMIUM INPUT FIELD STYLINGS */
+/* FORMS AND INTERACTIVITY */
 .btn-primary {
     background-color: var(--primary-color);
     color: var(--white);
@@ -1293,7 +1414,6 @@ tr:last-child td {
     transform: translateY(-1px);
 }
 
-/* NEW SECONDARY BUTTON UTILITY */
 .btn-secondary {
     background-color: var(--secondary-color);
     color: var(--white);
@@ -1332,7 +1452,6 @@ tr:last-child td {
     background-color: var(--primary-light);
 }
 
-/* PREMIUM FORM GROUP INPUT STYLES */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -1349,34 +1468,31 @@ tr:last-child td {
 
 .form-group input, .form-group select, .form-group textarea {
     padding: 12px 16px;
-    border: 1.5px solid #cbd5e1; /* Thicker and cleaner gray borders */
-    border-radius: 10px; /* Modern curved input style */
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
     font-size: 14px;
-    background-color: #f8fafc; /* Sleek light gray-green color background */
+    background-color: #ffffff;
     color: var(--text-color);
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
 }
 
 .form-group input::placeholder, .form-group textarea::placeholder {
-    color: #94a3b8; /* Balanced gray-teal placeholder text color */
+    color: #94a3b8;
 }
 
 .form-group input:hover, .form-group select:hover, .form-group textarea:hover {
     border-color: #94a3b8;
-    background-color: var(--white);
 }
 
-/* Soft secondary teal focus outline */
 .form-group input:focus, 
 .form-group select:focus, 
 .form-group textarea:focus {
     border-color: var(--secondary-color);
     background-color: var(--white);
-    box-shadow: 0 0 0 4px rgba(34, 135, 129, 0.15); /* Sleek teal glow */
+    box-shadow: 0 0 0 4px rgba(34, 135, 129, 0.15);
 }
 
-/* Clean Custom Form Select layout with inline SVG chevron vector */
 .form-group select {
     appearance: none;
     -webkit-appearance: none;
